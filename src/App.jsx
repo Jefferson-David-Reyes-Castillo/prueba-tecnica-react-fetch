@@ -7,20 +7,16 @@ export function App() {
   const [imageUrl, setImageUrl] = useState();
 
   useEffect(() => {
-    try {
-      fetch(RANDOM_FACT)
-        .then((res) => res.json())
-        .then((data) => {
-          const { fact } = data;
-          setFact(fact);
-          const primeraPalabra = fact.split(" ").slice(0, 1).join(" ");
+    fetch(RANDOM_FACT)
+      .then((res) => res.json())
+      .then((data) => {
+        const { fact } = data;
+        setFact(fact);
+        const primeraPalabra = fact.split(" ").slice(0, 1).join(" ");
 
-          const URL = `https://cataas.com/cat/says/${primeraPalabra}`;
-          setImageUrl(URL);
-        });
-    } catch (err) {
-      setError("No se pudo cargar el hecho de gato. Intenta de nuevo.");
-    }
+        const URL = `https://cataas.com/cat/says/${primeraPalabra}`;
+        setImageUrl(URL);
+      });
   }, []);
 
   return (
